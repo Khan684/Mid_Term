@@ -26,11 +26,25 @@ public class Arithmetic
        
         ArithmeticBase r= new ArithmeticBase();
         Scanner in= new Scanner(System.in);
-        int n= in.nextInt();
-        int m= in.nextInt();
-        double result = r.calculate(m,n);
-        System.out.println("result :" +result); 
-    
+        double n= in.nextInt();
+        double m= in.nextInt();
+        
+        System.out.println("Choose an operation:");
+        for (Operation operation : Operation.values()) {
+            System.out.println(operation);
+        }
+        String userInput = in.next();
+        
+        // Convert user input to Operation enum
+        Operation operation = null;
+        try {
+            operation = Operation.valueOf(userInput.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid operation!");
+            System.exit(1);
+        }
+
+        double result = r.calculate(m, n, operation);
+        System.out.println("Result: " + result);
     }
 }
-
